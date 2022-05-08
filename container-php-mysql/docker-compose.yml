@@ -1,0 +1,24 @@
+#OBS Geral:  Tab ou indentação significa que a informação está no bloco anterior do tab ou da indentação
+version: "3" #Versão do meu arquivo da configuração
+
+#Configurar o local do meu php e mysql 
+services: #meus serviços rodando
+  www:
+      build: . #proprio serviço o mais novo 
+      restart: always #Significa se der algum problema reincia automaticamente, garante o sistema online
+      ports: 
+            - "8000:80" # QUal porta vai utilizar. Referencia porta do meu local para a porta do container do meu pc 8000 e no container 80. EU to apontando a porta 80 para rodar no meu pc epla porta 
+      volumes: #volume para aramzenar os arquivos do servidor
+            - ./www:/var/www/html #www: minha pasta local e mando para o container para a /var/ww/html
+      networks:
+            - default #configuração padrão da rede
+  db:
+      image: mysql:5.7
+      restart: always
+      ports:
+          - "3306:3306"
+volumes: #volumes de dados , um local para armazenar meus dados
+ 
+  #criei meu volume 
+  db_data:
+
